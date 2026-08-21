@@ -2,6 +2,89 @@
 
 // NAVBAR SHADOW
 
+(function(){
+  const canvas = document.getElementById('bg-wallpaper');
+  const ctx = canvas.getContext('2d');
+
+  function resize(){
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  function isDark(){
+    return document.body.classList.contains('dark-mode');
+  }
+
+  let pts = [];
+  const N = 70;
+  for(let i=0;i<N;i++){
+    pts.push({
+      x: Math.random()*canvas.width,
+      y: Math.random()*canvas.height,
+      vx: (Math.random()-0.5)*0.35,
+      vy: (Math.random()-0.5)*0.35
+    });
+  }
+
+  // click anywhere on the page adds a small burst
+  window.addEventListener('click', function(e){
+    for(let i=0;i<8;i++){
+      pts.push({
+        x: e.clientX, y: e.clientY,
+        vx: (Math.random()-0.5)*3,
+        vy: (Math.random()-0.5)*3,
+        burst: true, life: 60
+      });
+    }
+  });
+
+  function step(){
+    // background + dot/line colors flip with theme
+    const bg = isDark() ? 'rgba(17,17,17,0.28)' : 'rgba(247,247,247,0.35)';
+    const line = isDark() ? '120,170,255' : '0,119,255';
+    const dot  = isDark() ? '160,200,255' : '0,119,255';
+
+    ctx.fillStyle = bg;
+    ctx.fillRect(0,0,canvas.width,canvas.height);
+
+    for(const p of pts){
+      p.x += p.vx; p.y += p.vy;
+      if(p.x<0||p.x>canvas.width) p.vx*=-1;
+      if(p.y<0||p.y>canvas.height) p.vy*=-1;
+      if(p.life!==undefined) p.life--;
+    }
+    pts = pts.filter(p=>p.life===undefined||p.life>0);
+
+    for(let i=0;i<pts.length;i++){
+      for(let j=i+1;j<pts.length;j++){
+        const dx=pts[i].x-pts[j].x, dy=pts[i].y-pts[j].y;
+        const d=Math.sqrt(dx*dx+dy*dy);
+        if(d<100){
+          ctx.strokeStyle = 'rgba('+line+','+(0.18*(1-d/100))+')';
+          ctx.lineWidth = 1;
+          ctx.beginPath();
+          ctx.moveTo(pts[i].x,pts[i].y);
+          ctx.lineTo(pts[j].x,pts[j].y);
+          ctx.stroke();
+        }
+      }
+    }
+
+    for(const p of pts){
+      ctx.fillStyle = 'rgba('+dot+','+(p.burst?0.9:0.6)+')';
+      ctx.beginPath();
+      ctx.arc(p.x,p.y,p.burst?2:1.6,0,Math.PI*2);
+      ctx.fill();
+    }
+
+    requestAnimationFrame(step);
+  }
+  step();
+})();
+
+
 window.addEventListener("scroll", () => {
 
     const navbar = document.querySelector(".navbar");
