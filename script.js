@@ -1,7 +1,3 @@
-
-
-// NAVBAR SHADOW
-
 (function(){
   const canvas = document.getElementById('bg-wallpaper');
   const ctx = canvas.getContext('2d');

@@ -7,6 +7,7 @@
   <link rel="icon" href="img/portfolio_logo2.png" type="image/logo.png" />
 
   <link rel="stylesheet" href="portfolio.css"/>
+  <link rel="stylesheet" href="mobile-menu.css"/>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -31,13 +32,18 @@
     </nav>
 
     
-    <span></span><span></span><span></span>
+    <button class="hamburger" id="hamburger-btn" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+
     <a href="resume/Vinolan_Martin_Resume.pdf" class="resume-btn" download>
       Resume
     </a>
     
     <button id="theme-toggle">🌙</button>
   </header>
+
+  <div class="nav-overlay" id="nav-overlay"></div>
 
   <!-- HERO -->
   <section class="hero" id="home">
@@ -68,7 +74,7 @@
     </div>
 
     <div class="hero-image">
-      <img src="img/profile66.png" alt="Vinolan">
+      <img src="img/grad-solo2.jpeg" alt="Vinolan">
     </div>
 
   </section>
@@ -320,20 +326,35 @@
       <div class="project-card hidden">
 
         <video autoplay muted loop playsinline>
-          <source src="img/Alpha/videoAdmin.mp4" type="video/mp4">
+          <source src="" type="video/mp4">
         </video>
 
         <div class="project-content">
 
-          <h3>Alpha Electronics Admin Portal</h3>
+          <h3>Turf Online Booking System.</h3>
+          <h4> MY ACADEMIC PROJECT</h4> <p>group members: Vinolan martin, Sivinas, Sanjaykana</p>
 
           <p>
-            Flask-based admin management system with authentication,
-            user handling and MySQL integration.
+            Online Turf Booking System developed  using HTML,
+             CSS, JavaScript, Python with Flask, and MySQL.
+              HTML and CSS are used to design the user interface, JavaScript provides interactive functionality,
+               Flask handles the backend operations, and MySQL stores user, turf, booking, and payment-related data.
+            The system allows users to register and log in, search for sports turfs, check availability, 
+            view turf details, select time slots, and make bookings. Users can filter turfs based on location,
+             sport type, price, and availability. Turf managers can add, update, or delete turf details, manage 
+             schedules and pricing, monitor bookings and revenue, and generate reports. The system also supports
+              payment management and notifications for bookings, cancellations, and rescheduling.
+             The main objective is to make sports turf booking simple, convenient, and organized.
           </p>
 
-          <a href="https://github.com/vinolan-martin/ALPHA---ADMIN" target="_blank">
+          <a href="https://github.com/vinolanmartind/ONLINE-TURF-BOOKING" target="_blank">
             View Project
+          </a> <br><span></span>
+          <a href="img/Presentation_one.pdf" target="_blank" class="certificate-link" style=" text-decoration: none;">
+            presentation 1
+          </a> <br><span/>
+          <a href="img/Onlineturfbookingsystem.pdf" target="_blank" class="certificate-link" style=" text-decoration: none;">
+            presentation 2
           </a>
 
         </div>
@@ -342,28 +363,7 @@
       
 
       <!-- Project -->
-      <div class="project-card hidden">
-
-        <video autoplay muted loop playsinline>
-          <source src="img/Alpha/Alpa user portal.webm" type="video/webm">
-        </video>
-
-        <div class="project-content">
-
-          <h3>Alpha Electronics Client Portal</h3>
-
-          <p>
-            Responsive React.js client-side portal with dynamic UI
-            and modern component architecture.
-          </p>
-
-          <a href="https://github.com/vinolan-martin/ALPHA-USER-PORTAL" target="_blank">
-            View Project
-          </a>
-
-        </div>
-
-      </div>
+      
 
     </div>
 
@@ -397,10 +397,11 @@
 
   <!-- FOOTER -->
   <footer>
-    <p>© 2025 Vinolan Martin. All Rights Reserved.</p>
+    <p>© 2025 Vinolan Martin.</p>
   </footer>
 
   <script src="script.js"></script>
+  <script src="mobile-menu.js"></script>
 
 </body>
-</html>
+</html
